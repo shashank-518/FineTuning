@@ -1,0 +1,42 @@
+# Badminton domain LoRA fine-tune — small local LLM
+
+model_name: HuggingFaceTB/SmolLM2-360M-Instruct
+# Alternatives that also fit "small + local":
+#   Qwen/Qwen2.5-0.5B-Instruct
+#   Qwen/Qwen2.5-1.5B-Instruct
+
+data_path: data/badminton_qa.jsonl
+output_dir: outputs/badminton-smollm2-lora
+
+# LoRA
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+target_modules:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+
+# Training (CPU-friendly defaults; bump batch if you have GPU memory)
+max_seq_length: 512
+num_train_epochs: 3
+per_device_train_batch_size: 1
+gradient_accumulation_steps: 8
+learning_rate: 2.0e-4
+warmup_ratio: 0.05
+weight_decay: 0.01
+logging_steps: 5
+save_steps: 50
+seed: 42
+
+# Inference
+max_new_tokens: 256
+temperature: 0.7
+top_p: 0.9
+system_prompt: >-
+  You are a helpful badminton coach and rules expert.
+  Answer clearly and accurately about badminton technique, tactics, equipment, and rules.

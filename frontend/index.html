@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shuttle — Badminton Coach</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Syne:wght@700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="court-bg" aria-hidden="true"></div>
+    <main class="shell">
+      <header class="brand">
+        <p class="mark">Shuttle</p>
+        <h1>Ask your badminton coach</h1>
+        <p class="lede">
+          Local fine-tuned model for rules, strokes, tactics, and gear.
+        </p>
+      </header>
+
+      <section class="chat" aria-label="Chat">
+        <div id="messages" class="messages" role="log" aria-live="polite"></div>
+        <form id="chat-form" class="composer">
+          <label class="sr-only" for="prompt">Your question</label>
+          <textarea
+            id="prompt"
+            name="prompt"
+            rows="2"
+            placeholder="e.g. How does doubles scoring work?"
+            required
+          ></textarea>
+          <button type="submit" id="send">Ask</button>
+        </form>
+        <p id="status" class="status" hidden></p>
+      </section>
+    </main>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
